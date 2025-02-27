@@ -5,9 +5,11 @@ class CityRepository{
     async createCity({name}){
        
         try{
+            console.log("Received city name:", name);
             const city=await City.create({
                 name
             });
+            return city;
         }
         catch(error){
             console.log("Something went wrong in the repository layer");
@@ -18,12 +20,12 @@ class CityRepository{
 
     async deleteCity(cityid){
         try{
-            await City.destroy({
+           const deleterow=await City.destroy({
                 where:{
                     id:cityid
                 }
             });
-            return true;
+            return deleterow>0;
         }catch(error){
             console.log("Something went wrong in the repository layer");
             throw {error};
@@ -46,7 +48,7 @@ class CityRepository{
 
     async getCity(cityid){
         try{
-            const city=await City.findByPk(cityId);
+            const city=await City.findByPk(cityid);
             return city;
         }
         catch(error){

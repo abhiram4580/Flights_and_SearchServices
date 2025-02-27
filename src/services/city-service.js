@@ -3,7 +3,7 @@ const {CityRepository}=require('../repository/index');
 
 class CityService{
     constructor(){
-        this.CityRepository=new CityRepository();
+        this.cityRepository=new CityRepository();
     }
 
     async createCity(data){
@@ -19,7 +19,7 @@ class CityService{
     }
     async deleteCity(cityId){
        try{
-         const response=this.cityRepository.deleteCity(cityId);
+         const response=await this.cityRepository.deleteCity(cityId);
          return response;
 
        }
@@ -31,7 +31,7 @@ class CityService{
     }
     async updateCity(cityId,data){
         try{
-            const city=await this.CityRepository.updateCity(cityId,data);
+            const city=await this.cityRepository.updateCity(cityId,data);
             return city;
         }
         catch(error){
