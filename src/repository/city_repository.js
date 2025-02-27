@@ -11,7 +11,7 @@ class CityRepository{
         }
         catch(error){
             console.log("Something went wrong in the repository layer");
-            throw {error};
+            throw {error}; 
         }
 
     }
@@ -58,3 +58,4 @@ class CityRepository{
 
 
 }
+module.exports=CityRepository;
