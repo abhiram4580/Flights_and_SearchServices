@@ -34,15 +34,24 @@ class CityRepository{
 
     async updateCity(cityId,data){
         try{
-            const city=await City.update(data,{
-                where:{
-                    id:cityId
-                }
-            });
-            return city;
+        // the below approach also works but will not return the updated object
+        //     const city=await City.update(data,{
+        //         where:{
+        //            id:cityId,
+        // 
+        //                   },
+        // 
+        // 
+        //    });
+        // for getting 
+        const city=await City.findByPk(cityId);
+        city.name=data.name;
+        await city.save();
+        return city;
         }
         catch(error){
-
+             console.log("Something is wrong in the repository layer");
+             throw {error};
         }
     }
 
@@ -56,6 +65,16 @@ class CityRepository{
             throw {error};
         }
     }
+    async getAllCities(){
+        try{
+            const cities=await City.findAll();
+            return cities;
+        }
+        catch(error){
+            throw {error};
+        }
+    }
+            
 
 
 
