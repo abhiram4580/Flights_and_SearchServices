@@ -1,11 +1,9 @@
 const {CityRepository}=require('../repository/index');
 
-
 class CityService{
     constructor(){
         this.cityRepository=new CityRepository();
     }
-
     async createCity(data){
         try{
             const city=await this.cityRepository.createCity(data);
@@ -15,7 +13,6 @@ class CityService{
             console.log("Something went wrong at the service layer");
             throw {error};
         }
-
     }
     async deleteCity(cityId){
        try{
@@ -50,9 +47,9 @@ class CityService{
             throw{error};
         }
     }
-    async getAllCities(){
+    async getAllCities(filter){
         try{
-            const cities=await this.cityRepository.getAllCities();
+            const cities=await this.cityRepository.getAllCities(filter);
             return cities;
         }
         catch(error){
